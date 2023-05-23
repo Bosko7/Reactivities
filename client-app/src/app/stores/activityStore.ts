@@ -12,12 +12,22 @@ export default class ActivityStore{
 
     constructor() {
         makeAutoObservable(this)
-        
     }
 
     get activitiesByDate() {
         return Array.from(this.activityRegistry.values()).sort((a,b) => 
             Date.parse(a.date) - Date.parse(b.date));
+    }
+
+    get groupedActivities() {
+        return Object.entries(
+            //parametri activities, activity su ceo niz i pojedinacni clan
+            this.activitiesByDate.reduce((activities, activity) => {
+                const date = activity.date;
+                activities[date] = activities[date] ? [...activities[date], activity]: [activity];
+                return activities;
+            }, {} as {[key: string]:Activity[]})
+        )
     }
 
     loadActivities = async () => {
@@ -46,7 +56,6 @@ export default class ActivityStore{
                     activity = await agent.Activities.details(id);
                     this.setActivity(activity);
                     runInAction(() => this.selectedActivity = activity);
-                    
                     this.setLoadingInitial(false);
                     return activity;
                 } catch (error) {
@@ -84,7 +93,7 @@ export default class ActivityStore{
             console.log(error);
             runInAction (() => {
                 this.loading = false;
-            })   
+            })
         }
     }
 
