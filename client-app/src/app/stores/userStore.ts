@@ -4,14 +4,14 @@ import agent from "../api/agent";
 import { store } from "./store";
 import { router } from "../router/Routes";
 
-export default class UserStore{
+export default class UserStore {
     user: User | null = null;
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this)
     }
 
-    get isLoggedIn(){
+    get isLoggedIn() {
         return !!this.user;
     }
 
@@ -23,7 +23,7 @@ export default class UserStore{
 
             router.navigate('/activities');
             store.modalStore.closeModal();
-        }catch(error) {
+        } catch (error) {
             throw error;
         }
     }
@@ -36,22 +36,22 @@ export default class UserStore{
 
             router.navigate('/activities');
             store.modalStore.closeModal();
-        }catch(error) {
+        } catch (error) {
             throw error;
         }
     }
 
-    setImage = (image:string) => {
-        if(this.user){
+    setImage = (image: string) => {
+        if (this.user) {
             this.user.image = image;
         }
-        
+
     }
 
 
     logout = () => {
         store.commonStore.setToken(null);
-        this.user =null;
+        this.user = null;
         router.navigate('/');
     }
 
@@ -62,5 +62,9 @@ export default class UserStore{
         } catch (error) {
             console.log(error);
         }
+    }
+
+    setDisplayName = (name: string) => {
+        if (this.user) this.user.displayName = name;
     }
 }
