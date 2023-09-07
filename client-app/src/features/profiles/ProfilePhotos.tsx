@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Card, Header, Tab, Image, Grid, Button } from 'semantic-ui-react';
 import { Photo, Profile } from '../../app/models/profile';
 import { useStore } from '../../app/stores/store';
@@ -14,6 +14,7 @@ export default observer(function ProfilePhotos({profile}: Props){
                             loading, setMainPhoto, deletePhoto}} = useStore();
     const [addPhotoMode, setAddPhotoMode] = useState(false);
     const [target, setTarget] = useState('');
+   
 
     function handleSetMainPhoto(photo: Photo, e: SyntheticEvent<HTMLButtonElement>){
         setTarget(e.currentTarget.name);
@@ -77,6 +78,8 @@ export default observer(function ProfilePhotos({profile}: Props){
                     </Card.Group>
                     )}
                 </Grid.Column>
+                
+               
             </Grid>
         </Tab.Pane>
 

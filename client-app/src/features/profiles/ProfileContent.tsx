@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import ProfilePhotos from './ProfilePhotos';
 import { Profile } from '../../app/models/profile';
@@ -28,7 +27,7 @@ export default observer(function ProfileContent({profile}: Props)
             menu={{fluid:true, vertical:true}}
             menuPosition='right'
             panes={panes}
-            onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+            onTabChange={(_, data) => profileStore.setActiveTab(data.activeIndex as number)}
         />
     )
 });

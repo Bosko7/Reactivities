@@ -1,6 +1,6 @@
 export interface ChatComment {
     id: number;
-    createdAt: any;
+    createdAt: Date;
     body: string;
     displayName: string;
     image: string;

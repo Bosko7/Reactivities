@@ -29,7 +29,7 @@ export default observer(function RegisterForm(){
                     <MyTextInput placeholder="Password" name='password' type='password' />
                     <ErrorMessage name="error"
                         render={() => 
-                            <ValidationError errors={errors.error} />
+                            <ValidationError errors={errors.error as unknown as string[]} />
                         }
                     />
                     <Button 
