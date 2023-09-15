@@ -13,6 +13,7 @@ primary_region = "otp"
   ASPNETCORE_URLS="http://+:8080"
   Cloudinary__CloudName="dsxvk52a7"
   Cloudinary__ApiKey="242195249292337"
+  Sendgrid__User="bosko"
 
 [http_service]
   internal_port = 8080
